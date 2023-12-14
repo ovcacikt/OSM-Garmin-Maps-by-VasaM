@@ -11,7 +11,7 @@ from makerfuncs.Lang import Lang, _
 def main():
 	# Object with configuration and options
 	o = Options()
-	o.JAVAMEM  = '-Xmx4g' # Maximum amount of available RAM, see https://stackoverflow.com/questions/14763079/what-are-the-xms-and-xmx-parameters-when-starting-jvm
+	o.JAVAMEM  = '-Xmx6g' # Maximum amount of available RAM, see https://stackoverflow.com/questions/14763079/what-are-the-xms-and-xmx-parameters-when-starting-jvm
 	o.MAX_JOBS = 4        # Maximum od cores
 	o.VERSION  = 111      # Version
 
