@@ -152,4 +152,4 @@ Maximum age of map data for automatic download. Value in the form [0-9]+[hdm], w
 	o.mapNumber      = args.map_number
 	o.variant        = args.variant
 	o.en             = args.en
-	o.sufix          = '_VasaM' if args.sufix is None else '_' + args.sufix + '_VasaM'
+	o.sufix          = '_LTMB' if args.sufix is None else '_LTMB_' + args.sufix
