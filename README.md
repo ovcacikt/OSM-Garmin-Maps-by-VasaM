@@ -5,9 +5,9 @@
 Toto dílo podléhá licenci [Creative Commons Uveďte původ 4.0 Mezinárodní License](http://creativecommons.org/licenses/by/4.0/).
 
 ## Požadavky
-* Java verze 8
+* Java
 * Python verze 3.10 (testováno na 3.10.3)
-* Program [phyghtmap](http://katze.tfiu.de/projects/phyghtmap/), viz [instalace](#Instalace)
+* Program [pyhgtmap]((https://github.com/agrenott/pyhgtmap), viz [instalace](#Instalace)
 
 ## Instalace
 Pokud si při instalaci nebudete vědět s něčím rady nebo se vyskytnou nějaké problémy, podívejte se do [FAQ pro instalaci](#faq-pro-instalaci)
@@ -21,26 +21,30 @@ Pokud si při instalaci nebudete vědět s něčím rady nebo se vyskytnou něja
 	1) [Zde](https://www.java.com/en/download/manual.jsp) stáhnete instalátor pro Windows. Pokud máte 64bitový systém, doporučuji *Windows Offline (64-bit)*. Můžete použít výchozí nastavení instalace.
 	2) Pro linux použijte `sudo apt install default-jre -y`
 
-3) Nainstalujte *phyghtmap*
-	1) [Odsud](http://katze.tfiu.de/projects/phyghtmap/download.html) stáhněte program *phyghtmap*, označení *source distribution*. Doporučuji nejnovější verzi. Např. v srpnu 2021 to je *phyghtmap_2.23.orig.tar.gz*. **Pozor**, verze 2.23 (a zřejmě i starší) v kombinaci s nejnovějšími verzemi ostatních knihoven nefunguje. Vytvořil jsem opravenou [kopii](http://www.garmin.vasam.cz/downloads/phyghtmap-2.23_fixed.zip).
-	2) Archiv rozbalte a ve složce se souborem *setup.py* spusťte konzoli.
-	3) Příkazem `pip3 install matplotlib bs4 lxml` nainstalujte potřebné knihovny.
+3) Nainstalujte *pyhgtmap* ~~*phyghtmap*~~
+
+	1) Kvůli změnám v maptolib nelze použít phygthmap.
+	   [Odsud](https://github.com/agrenott/pyhgtmap) stáhněte program *pyhgtmap*.
+	2) Archiv rozbalte a ve složce spusťte konzoli.
+	3) Příkazem `pip3 install pyhgtmap[geotiff]` popř. `pip3 install pyhgtmap` nainstalujte potřebné knihovny.
 	4) Příkazem `python setup.py install` nainstalujte *phyghtmap*.
-	5) Ověřte si úspěšnost instalace příkazem `phyghtmap --version`. Mělo by se vám zobrazit `phyghtmap 2.23`. Pokud vše funguje, můžete rozbalený archiv smazat.
+	5) Ověřte si úspěšnost instalace příkazem `pyhgtmap --version`. Možná se zobraz varování ohledně verze NumPy, nicméně poslední řadek by měl obsahovat verzi programu např. `pyhgtmap 3.5.2`.
 
 4) Nainstalujte tento skript *gmapmaker*
 	1) Uložte si obsah celého repozitáře (vpravo nahoře: *Code* - *Download ZIP*).
 	2) Archiv rozbalte v místě, kde chcete generátor provozovat. Mapové soubory, které budou stahovány, zabírají stovky megabajtů, u velkých států jako Německo to mohou být i gigabajty.
 	3) Příkazem `pip3 install pyclipper geojson` nainstalujte zbývající potřebné knihovny.
 
-5) Proveďte inicializaci skriptu pomocí `python prepare.py`.
+6) Proveďte inicializaci skriptu pomocí `python prepare.py`.
 	* Přeskočením odpovědi (klávesa *enter*) se použije výchozí, popř. poslední nastavení.
 	* Tento skript automaticky stáhne potřebné soubory ([sea](https://www.mkgmap.org.uk/download/mkgmap.html) a [bounds](https://www.mkgmap.org.uk/download/mkgmap.html)) a programy ([mkgmap](https://www.mkgmap.org.uk/download/mkgmap.html), [splitter](https://www.mkgmap.org.uk/download/splitter.html) a [Osmconvert](https://wiki.openstreetmap.org/wiki/Osmconvert#Binaries)) - celkem cca 1,5 GB. Případná aktualizace je možná pomocí `python update.py`.
 	* Vhodná verze programu *Osmconvert* (Windows/Linux a 32bit/64bit) je detekována automaticky. Pokud ke skriptu *gmapmaker* přistupujete z různých systémů, je nutné spustit `python update.py` v každém z nich. Omezení systému Windows zároveň neumožňuje programu *Osmconvert* zpracovat soubory větší než 2 GB. Tento program slouží k vytvoření výřezu (přepínače `--crop` a `--extend`), proto je nutné pro větší oblasti (většina států) použít buď systém Linux nebo si stáhnout speciální verzi [binary for Windows 64 bit](https://wiki.openstreetmap.org/wiki/Osmconvert#Windows) a tou nahradit automaticky stažený soubor *osmconvert64.exe*. **POZOR** toto funguje jen pro 64bitový systém Windows, pro 32bitový systém Windows řešení není. Linuxu se tento problém netýká.
 
-6) Ověřte si funkčnost skriptu příkazem `python gmapmaker.py --version`.
+7) Na Linuxu je nutné přidat execution práva pro osmconvert `chmod u+x osmconvert/osmconvert64`
 
-7) V souboru *gmapmaker.py* na prvních řádcích lze definovat maximální rozsah paměti RAM, povolený počet vláken procesoru a verzi mapy. (**FIXME** v budoucnu bude přesunuto do skriptu *prepare*).
+8) Ověřte si funkčnost skriptu příkazem `python gmapmaker.py --version`.
+
+9) V souboru *gmapmaker.py* na prvních řádcích lze definovat maximální rozsah paměti RAM, povolený počet vláken procesoru a verzi mapy. (**FIXME** v budoucnu bude přesunuto do skriptu *prepare*).
 
 ### FAQ pro instalaci a možné chyby
 * [*Jak zjistit, zda počítač používá 32bitovou nebo 64bitovou verzi operačního systému Windows*](https://support.microsoft.com/cs-cz/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64)
@@ -48,7 +52,7 @@ Pokud si při instalaci nebudete vědět s něčím rady nebo se vyskytnou něja
 * Na linuxu může být pro nástroj pip3 (popř. i pro python setup.py) vyžadován přepínač `--user` (`pip3 install --user name1 name2`) nebo `sudo` (`sudo pip3 install name1 name2`).
 * Pokud se zobrazí chyba informující o nepřítomnosti pythonu, [restartujte průzkumník](https://wintip.cz/425-jak-restartovat-pruzkumnik-windows-proces-explorer-exe).
 * Na Windows 10 může být problém s antivirem, viz [zde](https://github.com/VasaMM/OSM-Garmin-Maps-by-VasaM/issues/2#issuecomment-532711693).
-* Hlásí-li skript problémy s daty *sea*, smažte odpovídající složku a spusťte `python update.py`.
+* Hlásí-li skript problémy s daty *sea* popř. *bounds*, smažte odpovídající složku a spusťte `python update.py`.
 
 
 ## Použití
