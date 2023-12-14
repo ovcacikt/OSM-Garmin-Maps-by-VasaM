@@ -261,7 +261,8 @@ def garmin(o: Options) -> None:
 		'--product-version=' + str( o.VERSION ),
 		'--output-dir=' + os.path.join(o.img, o.area.id + o.sufix),
 		'--dem-poly=' + os.path.join(o.polygons, o.area.id + '.poly'),
-		'--license-file=' + os.path.join(o.temp, 'license.txt')
+		'--license-file=' + os.path.join(o.temp, 'license.txt',
+		'--gmapi')
 	]
 
 	if o.code == 'unicode':
