@@ -75,6 +75,19 @@ Je-li skript spuštěn bez parametrů `python ./gmapmaker.py` vyžádá si od u�
 * `-h`, `--help` zobrazí nápovědu.
 * `--en` přepne skript do angličtiny
 
+Vygenerované mapy jsou v GMAPI formátu, který je použitelný pro MacOS i Windows.
+### MacOS
+1) Je nutné stáhnout MapInstall a MapManager aplikace z Garmin stránek.
+2) Double click na vygenerovany gmapi adresář automaticky nainstaluje vygenerované mapy do BaseCampu
+
+### Windows
+1) Stačí nahrát vygenerovaný gmapi adresář do cesty `%appdata%\Garmin\Maps`
+2) V případě nedostatku místa na C: disku je možné vytvořit soft-link pro Maps adresář a přesunout mapy na nový disk:
+	1) Spustit terminál jako správce
+ 	2) `cd %appdata%\Garmin`
+  	3) `move Maps Maps_old`
+   	4) `mklink /D Maps <cesta k gmapi adresářům>` např.
+	   `mklink /D Maps D:\downloads\garmin_mapy`
 
 ## Seznam států
 Státy jsou definovány ve skriptu *python/areas.py*. Vlastní oblasti lze definovat v souboru *userAreas/myAreas.py* (ten je vytvořen až skriptem *prepare*, tudíž by měl být imunní vůči přepsání při aktualizaci i opětovnému spuštění zmíněného skriptu). Doporučuji vycházet z předpřipravené oblasti *OL* definující okres Olomouc. Pro každou novou oblast je nutné zadefinovat nový objekt třídy *Area* (definována v *makerfuncs/Area.py*). K mapě lze definovat následující vlastnosti:
